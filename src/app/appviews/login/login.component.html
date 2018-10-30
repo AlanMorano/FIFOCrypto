@@ -1,0 +1,18 @@
+<mat-card class="login-wrapper">
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form *ngIf="isLoginShown" class="login-form" (ngSubmit)="onSubmit(mLogin)" #f="ngForm" novalidate>
+      <mat-form-field appearance="outline" class="form-item">
+        <mat-label>Email</mat-label>
+        <input name="email" matInput placeholder="Placeholder" type="email" required [(ngModel)]="mLogin.email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="form-item">
+        <mat-label>Password</mat-label>
+        <input name="password" matInput placeholder="Placeholder" type="password" required [(ngModel)]="mLogin.password">
+      </mat-form-field>
+      <button mat-stroked-button>Submit</button>
+    </form>
+    <button *ngIf="isCreateShown" (click)="createLink()" class="btn-link" mat-stroked-button>Create an account here!</button>
+    <mat-spinner *ngIf="isLoadShown" style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+  </mat-card-content>
+</mat-card>

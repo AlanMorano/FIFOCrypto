@@ -1,0 +1,216 @@
+@import './variables';
+.font-kelson-bold {
+  font-family : $font-kelson-sans-bold !important;
+}
+
+@font-face {
+  font-family : $font-kelson-sans-bold;
+  src         : url('/assets/fonts/Kelson Sans Bold.otf') format('opentype');
+}
+
+.font-kelson-bold-bg {
+  font-family : $font-kelson-sans-bold-bg !important;
+}
+
+@font-face {
+  font-family : $font-kelson-sans-bold-bg;
+  src         : url('/assets/fonts/Kelson Sans Bold BG.otf') format('opentype');
+}
+
+.font-kelson-light {
+  font-family : $font-kelson-sans-light !important;
+}
+
+@font-face {
+  font-family : $font-kelson-sans-light;
+  src         : url('/assets/fonts/Kelson Sans Light.otf') format('opentype');
+}
+
+.font-kelson-light-bg {
+  font-family : $font-kelson-sans-light-bg !important;
+}
+
+@font-face {
+  font-family : $font-kelson-sans-light-bg;
+  src         : url('/assets/fonts/Kelson Sans Light BG.otf') format('opentype');
+}
+
+.font-kelson-sans-regular {
+  font-family : $font-kelson-sans-regular !important;
+}
+
+@font-face {
+  font-family : $font-kelson-sans-regular;
+  src         : url('/assets/fonts/Kelson Sans Regular.otf') format('opentype');
+}
+
+.font-kelson-sans-regular-bg {
+  font-family : $font-kelson-sans-regular-bg !important;
+}
+
+@font-face {
+  font-family : $font-kelson-sans-regular-bg;
+  src         : url('/assets/fonts/Kelson Sans Regular BG.otf') format('opentype');
+}
+
+.font-roboto-black {
+  font-family : $font-roboto-black !important;
+}
+
+@font-face {
+  font-family : $font-roboto-black;
+  src         : url('/assets/fonts/Roboto-Black.ttf') format('truetype');
+}
+
+.font-roboto-black-italic {
+  font-family : $font-roboto-black-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-black-italic;
+  src         : url('/assets/fonts/Roboto-BlackItalic.ttf') format('truetype');
+}
+
+.font-roboto-bold {
+  font-family : $font-roboto-bold !important;
+}
+
+@font-face {
+  font-family : $font-roboto-bold;
+  src         : url('/assets/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+.font-roboto-bold-italic {
+  font-family : $font-roboto-bold-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-bold-italic;
+  src         : url('/assets/fonts/Roboto-BoldItalic.ttf') format('truetype');
+}
+
+.font-roboto-italic {
+  font-family : $font-roboto-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-italic;
+  src         : url('/assets/fonts/Roboto-Italic.ttf') format('truetype');
+}
+
+.font-roboto-light {
+  font-family : $font-roboto-light !important;
+}
+
+@font-face {
+  font-family : $font-roboto-light;
+  src         : url('/assets/fonts/Roboto-Light.ttf') format('truetype');
+}
+
+.font-roboto-light-italic {
+  font-family : $font-roboto-light-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-light-italic;
+  src         : url('/assets/fonts/Roboto-Light.ttf') format('truetype');
+}
+
+.font-roboto-medium {
+  font-family : $font-roboto-medium !important;
+}
+
+@font-face {
+  font-family : $font-roboto-medium;
+  src         : url('/assets/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+.font-roboto-medium-italic {
+  font-family : $font-roboto-medium-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-medium-italic;
+  src         : url('/assets/fonts/Roboto-MediumItalic.ttf') format('truetype');
+}
+
+.font-roboto-regular {
+  font-family : $font-roboto-regular !important;
+}
+
+@font-face {
+  font-family : $font-roboto-regular;
+  src         : url('/assets/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+.font-roboto-thin {
+  font-family : $font-roboto-thin !important;
+}
+
+@font-face {
+  font-family : $font-roboto-thin;
+  src         : url('/assets/fonts/Roboto-Thin.ttf') format('truetype');
+}
+
+.font-roboto-thin-italic {
+  font-family : $font-roboto-thin-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-thin-italic;
+  src         : url('/assets/fonts/Roboto-ThinItalic.ttf') format('truetype');
+}
+
+.font-roboto-condensed-bold {
+  font-family : $font-roboto-condensed-bold !important;
+}
+
+@font-face {
+  font-family : $font-roboto-condensed-bold;
+  src         : url('/assets/fonts/RobotoCondensed-Bold_1.ttf') format('truetype');
+}
+
+.font-roboto-condensed-bold-italic {
+  font-family : $font-roboto-condensed-bold-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-condensed-bold-italic;
+  src         : url('/assets/fonts/RobotoCondensed-BoldItalic_1.ttf') format('truetype');
+}
+
+.font-roboto-condensed-italic {
+  font-family : $font-roboto-condensed-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-condensed-italic;
+  src         : url('/assets/fonts/RobotoCondensed-Italic_1.ttf') format('truetype');
+}
+
+.font-roboto-condensed-light {
+  font-family : $font-roboto-condensed-light !important;
+}
+
+@font-face {
+  font-family : $font-roboto-condensed-light;
+  src         : url('/assets/fonts/RobotoCondensed-Light_1.ttf') format('truetype');
+}
+
+.font-roboto-condensed-light-italic {
+  font-family : $font-roboto-condensed-light-italic !important;
+}
+
+@font-face {
+  font-family : $font-roboto-condensed-light-italic;
+  src         : url('/assets/fonts/RobotoCondensed-LightItalic_1.ttf') format('truetype');
+}
+
+.font-roboto-condensed-regular {
+  font-family : $font-roboto-condensed-regular !important;
+}
+
+@font-face {
+  font-family : $font-roboto-condensed-regular;
+  src         : url('/assets/fonts/RobotoCondensed-Regular_1.ttf') format('truetype');
+}

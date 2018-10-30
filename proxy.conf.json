@@ -1,0 +1,11 @@
+[
+  {
+    "context": [
+      "/api/*"
+    ],
+    "target": "https://fifocrypto.mybluemix.net",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+]
