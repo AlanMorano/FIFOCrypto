@@ -71,6 +71,8 @@ export class TransferComponent implements OnInit {
         console.log('The dialog was closed');
         this.message = result;
       });
+      this.isLoadShown = true;
+      this.form1 = false;
     }, err => {
       console.log(err);
     });

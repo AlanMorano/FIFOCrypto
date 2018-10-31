@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import {UserService} from '../../../shared/services/user.service';
 import {MEthBal} from '../../../shared/models/m-response-ethbal-model';
 import {MEthUSD} from '../../../shared/models/m-response-ethusd-model';
 import { MCreatePay } from 'src/app/shared/models/m-createPay-model';
 import { MResponseCreatePay } from 'src/app/shared/models/m-response-createPay-model';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -46,8 +47,13 @@ export class UserDashboardComponent implements OnInit {
   createPay(mCreatePay: MCreatePay) {
     this.form1 = false;
     this.isLoadShown = true;
-    mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
-    mCreatePay.cancelUrl = 'http://localhost:4200/#/user/dashboard';
+    if (!environment.production) {
+      mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
+      mCreatePay.cancelUrl = 'http://localhost:4200/#/user/dashboard';
+    } else {
+      mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
+      mCreatePay.cancelUrl = 'http://localhost:4200/#/user/dashboard';
+    }
     console.log(mCreatePay);
     this.usrSrv.createPay(mCreatePay).subscribe(res => {
       this.isLoadShown = false;
