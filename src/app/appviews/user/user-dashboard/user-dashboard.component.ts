@@ -51,8 +51,8 @@ export class UserDashboardComponent implements OnInit {
       mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
       mCreatePay.cancelUrl = 'http://localhost:4200/#/user/dashboard';
     } else {
-      mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
-      mCreatePay.cancelUrl = 'http://localhost:4200/#/user/dashboard';
+      mCreatePay.successUrl = 'https://fifocrypto.mybluemix.net/#/user/checkout';
+      mCreatePay.cancelUrl = 'https://fifocrypto.mybluemix.net/#/user/dashboard';
     }
     console.log(mCreatePay);
     this.usrSrv.createPay(mCreatePay).subscribe(res => {

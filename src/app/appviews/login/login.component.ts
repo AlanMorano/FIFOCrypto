@@ -34,11 +34,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!environment.production) {
-      this.mLogin = new MLogin({email: 'abmorano11@gmail.com', password: 'User@123'});
-    } else {
-      this.mLogin = new MLogin({email: 'juan10@email.com', password: '12345'});
-    }
   }
 
   onSubmit(mLogin) {
