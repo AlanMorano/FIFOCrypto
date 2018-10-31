@@ -1,0 +1,29 @@
+<mat-card class="global-wrapper">
+    <mat-card-title>Functions</mat-card-title>
+    <div class="sub-title">
+      Ether Balance: {{balance | number: "1.4"}} Ether<br>
+      1 Eth to USD: {{usd}}<br>
+      1 Eth to EUR: {{eur}}
+    </div>
+    <mat-card-content>
+      <mat-grid-list cols="1" rowHeight="300px">
+        <mat-grid-tile *ngIf="isLoadShown" class="func-wrapper">
+          <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+        </mat-grid-tile>
+        <mat-grid-tile *ngIf="form1" class="func-wrapper">
+          <form class="func-form" (ngSubmit)="transfer(mTransfer)" #f="ngForm" novalidate>
+            <label>Transfer Form</label>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Email</mat-label>
+              <input name="email" matInput placeholder="Placeholder" type="email" required [(ngModel)]="mTransfer.to">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Amount</mat-label>
+              <input name="amount" matInput placeholder="Placeholder" type="number" required [(ngModel)]="mTransfer.amount">
+            </mat-form-field>
+            <button mat-stroked-button>Submit</button>
+          </form>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+  </mat-card>

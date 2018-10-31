@@ -12,17 +12,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {WebStorageService} from '../shared/services/web-storage.service';
 import {AuthGuardService} from '../_auth/auth-guard.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import {
-  MatGridListModule,
-  MatCardModule,
-  MatMenuModule,
-  MatIconModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatSidenavModule,
-  MatListModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
-import { NavComponent } from './user/nav/nav.component';
+import { CheckoutComponent, CheckoutMatDialogComponent } from './user/checkout/checkout.component';
+import { TransferComponent, TransferMatDialogComponent } from './user/transfer/transfer.component';
 
 @NgModule({
   imports: [
@@ -31,15 +23,7 @@ import { NavComponent } from './user/nav/nav.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatIconModule,
-    MatButtonModule,
     LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule
   ],
   providers: [
     HttpClientModule,
@@ -51,10 +35,13 @@ import { NavComponent } from './user/nav/nav.component';
   declarations: [
     LoginComponent,
     LoginMatDialogComponent,
+    CheckoutMatDialogComponent,
+    TransferMatDialogComponent,
     UserDashboardComponent,
     LogoutComponent, ApiComponent,
     CreateAccountComponent,
-    NavComponent],
-  entryComponents: [LoginComponent, LoginMatDialogComponent]
+    CheckoutComponent,
+    TransferComponent],
+  entryComponents: [LoginComponent, LoginMatDialogComponent, CheckoutMatDialogComponent, TransferMatDialogComponent]
 })
 export class AppviewsModule { }

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../shared/services/user.service';
+import {MEthBal} from '../../../shared/models/m-response-ethbal-model';
+import {MEthUSD} from '../../../shared/models/m-response-ethusd-model';
+import { MCreatePay } from 'src/app/shared/models/m-createPay-model';
+import { MResponseCreatePay } from 'src/app/shared/models/m-response-createPay-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -7,12 +12,55 @@ import {UserService} from '../../../shared/services/user.service';
   styleUrls: ['./user-dashboard.component.scss']
 })
 export class UserDashboardComponent implements OnInit {
-
+  balance: string;
+  userEmail: string;
+  usd: number;
+  eur: number;
+  mCreatePay = new MCreatePay();
+  isLoadShown = false;
+  form1 = true;
+  form2 = false;
+  form3 = true;
   constructor(
-    private usrSrv: UserService
+    private usrSrv: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.userEmail = this.usrSrv.getCurrentUser();
+    this.usrSrv.getEtherBal(this.userEmail).subscribe(res => {
+      const result: MEthBal = res.result;
+      this.balance = result.ether;
+    }, err => {
+      console.log(err);
+    });
+    this.usrSrv.getEtherToUsd().subscribe(res => {
+      const result: MEthUSD = res.result;
+      this.eur = result.EUR;
+      this.usd = result.USD;
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  createPay(mCreatePay: MCreatePay) {
+    this.form1 = false;
+    this.isLoadShown = true;
+    mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
+    mCreatePay.cancelUrl = 'http://localhost:4200/#/user/dashboard';
+    console.log(mCreatePay);
+    this.usrSrv.createPay(mCreatePay).subscribe(res => {
+      this.isLoadShown = false;
+      this.form2 = true;
+      const data: MResponseCreatePay = res.result;
+      console.log(res, data);
+      const link = data.links[1].href;
+      window.open(link, '_self');
+    }, err => {
+      this.isLoadShown = false;
+      this.form1 = true;
+      console.log(err);
+    });
   }
 
 }

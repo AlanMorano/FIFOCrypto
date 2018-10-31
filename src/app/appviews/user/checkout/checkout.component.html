@@ -1,0 +1,41 @@
+<mat-card class="global-wrapper">
+  <mat-card-title>Functions</mat-card-title>
+  <div class="sub-title">
+    Ether Balance: {{balance | number: "1.4"}} Ether<br>
+    1 Eth to USD: {{usd}}<br>
+    1 Eth to EUR: {{eur}}
+  </div>
+  <mat-card-content>
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile *ngIf="isLoadShown" class="func-wrapper">
+        <label>{{current}}</label><br>
+        <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="form2" class="func-wrapper">
+        <form class="func-form" (ngSubmit)="executePay(mExecutePay)" #f="ngForm" novalidate>
+            <label>Step 2: Execute Payment Form</label>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Payment ID</mat-label>
+              <input name="id" matInput placeholder="Placeholder" type="text" required [(ngModel)]="mExecutePay.id">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Payer ID</mat-label>
+              <input name="payerId" matInput placeholder="Placeholder" type="text" required [(ngModel)]="mExecutePay.payerId">
+            </mat-form-field>
+            <button mat-stroked-button>Submit</button>
+          </form>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="form3" class="func-wrapper">
+          <form class="func-form" (ngSubmit)="exchange(mExchange)" #f="ngForm" novalidate>
+            <label>Step 3: Exchange Form</label>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Amount</mat-label>
+              <input name="amount" matInput placeholder="Placeholder" type="number" required [(ngModel)]="mExchange.amount">
+            </mat-form-field>
+            <button mat-stroked-button>Submit</button>
+          </form>
+          <button (click)="test()" mat-stroked-button>Test Button</button>
+        </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

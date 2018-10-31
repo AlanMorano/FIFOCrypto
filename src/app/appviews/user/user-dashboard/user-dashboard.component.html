@@ -1,0 +1,32 @@
+<mat-card class="global-wrapper">
+  <mat-card-title>Functions</mat-card-title>
+  <div class="sub-title">
+    Ether Balance: {{balance | number: "1.4"}} Ether<br>
+    1 Eth to USD: {{usd}}<br>
+    1 Eth to EUR: {{eur}}
+  </div>
+  <mat-card-content>
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile *ngIf="isLoadShown" class="func-wrapper">
+        <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+      </mat-grid-tile>
+      <mat-grid-tile *ngIf="form1" class="func-wrapper">
+        <form class="func-form" (ngSubmit)="createPay(mCreatePay)" #f="ngForm" novalidate>
+            <label>Step 1: Create Payment Form</label>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Amount</mat-label>
+              <input name="amount" matInput placeholder="Placeholder" type="number" required [(ngModel)]="mCreatePay.amount">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Currency</mat-label>
+              <mat-select name="currency" placeholder="Currency" [(ngModel)]="mCreatePay.currency">
+                <mat-option value="USD">USD</mat-option>
+                <mat-option value="EUR">EUR</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <button mat-stroked-button>Submit</button>
+          </form>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

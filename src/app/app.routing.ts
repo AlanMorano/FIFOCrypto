@@ -5,7 +5,6 @@
  */
 import {ModuleWithProviders} from '@angular/core/src/metadata/ng_module';
 import {Routes, RouterModule} from '@angular/router';
-import {NavComponent} from './appviews/user/nav/nav.component';
 import {AuthGuardService} from './_auth/auth-guard.service';
 import {LoginComponent} from './appviews/login/login.component';
 import {LayoutUserComponent} from './layouts/layout-user/layout-user.component';
@@ -13,17 +12,19 @@ import {LayoutBlankComponent} from './layouts/layout-blank/layout-blank.componen
 import {CreateAccountComponent} from './appviews/create-account/create-account.component';
 import {LogoutComponent} from './appviews/logout/logout.component';
 import {ApiComponent} from './appviews/api/api.component';
+import { CheckoutComponent } from './appviews/user/checkout/checkout.component';
+import { UserDashboardComponent } from './appviews/user/user-dashboard/user-dashboard.component';
+import { TransferComponent } from './appviews/user/transfer/transfer.component';
 
 export const ROUTES: Routes = [
-  // {path: '', redirectTo: 'index', pathMatch: 'full'},
-  // {path: 'index', component: LandingPageComponent},
-  // App views
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'api', component: ApiComponent},
   {
     path: 'user', component: LayoutUserComponent,
     children: [
-      {path: 'dashboard', component: NavComponent}
+      {path: 'dashboard', component: UserDashboardComponent},
+      {path: 'transfer', component: TransferComponent},
+      {path: 'checkout', component: CheckoutComponent}
     ],
     canActivate: [AuthGuardService]
   },
