@@ -7,17 +7,28 @@ import { MResponseCreatePay } from 'src/app/shared/models/m-response-createPay-m
 import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 
+export interface Curr {
+  value: string;
+  view: string;
+}
 @Component({
   selector: 'app-user-dashboard',
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.scss']
 })
 export class UserDashboardComponent implements OnInit {
+  expected: number;
   balance: string;
   userEmail: string;
+  curr: Curr[] = [
+    {value: 'USD', view: 'USD'},
+    {value: 'EUR', view: 'EUR'}
+  ];
   usd: number;
   eur: number;
-  mCreatePay = new MCreatePay();
+  mCreatePay = new MCreatePay({
+    currency: 'USD'
+  });
   isLoadShown = false;
   form1 = true;
   form2 = false;
@@ -67,6 +78,15 @@ export class UserDashboardComponent implements OnInit {
       this.form1 = true;
       console.log(err);
     });
+  }
+
+  onkeyup() {
+    const event = parseFloat(this.mCreatePay.amount);
+    if (this.mCreatePay.currency === 'USD') {
+      this.expected = event / this.usd;
+    } else {
+      this.expected = event / this.eur;
+    }
   }
 
 }

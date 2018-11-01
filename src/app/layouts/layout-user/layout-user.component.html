@@ -5,9 +5,9 @@
       [opened]="!(isHandset$ | async)">
     <mat-toolbar>Welcome, {{fname}}</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Logout</a>
       <a mat-list-item (click)="routeDash()">Buy Ether Using Debit</a>
       <a mat-list-item (click)="routeCout()">Transfer Page</a>
+      <a mat-list-item href="#">Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -21,6 +21,12 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>Get FIFO</span>
+      <div class="add-wrapper">
+        <p class="address">
+          <span>Public Address: {{pubAdd}}</span><br>
+          <span>Private Address: {{priAdd}}</span>
+        </p>
+      </div>
     </mat-toolbar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

@@ -20,6 +20,8 @@ export class LayoutUserComponent implements OnInit {
 
 
   fname: string;
+  pubAdd: string;
+  priAdd: string;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private usrSrv: UserService,
@@ -31,6 +33,8 @@ export class LayoutUserComponent implements OnInit {
     this.usrSrv.getDetails(userEmail).subscribe(res => {
       const user: MUser = res.result[0];
       this.fname = user.FirstName;
+      this.pubAdd = user.PublicAddress;
+      this.priAdd = user.PrivateAddress;
     }, err => {
       console.log(err);
     });

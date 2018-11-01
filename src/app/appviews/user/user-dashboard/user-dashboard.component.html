@@ -15,15 +15,17 @@
             <label>Step 1: Create Payment Form</label>
             <mat-form-field appearance="outline" class="form-item">
               <mat-label>Amount</mat-label>
-              <input name="amount" matInput placeholder="Placeholder" type="number" required [(ngModel)]="mCreatePay.amount">
+              <input name="amount" matInput placeholder="Placeholder" (keyup) = "onkeyup()" type="number" required [(ngModel)]="mCreatePay.amount">
             </mat-form-field>
             <mat-form-field appearance="outline" class="form-item">
               <mat-label>Currency</mat-label>
-              <mat-select name="currency" placeholder="Currency" [(ngModel)]="mCreatePay.currency">
-                <mat-option value="USD">USD</mat-option>
-                <mat-option value="EUR">EUR</mat-option>
+              <mat-select name="currency" placeholder="Currency" (selectionChange) = "onkeyup()" [(ngModel)]="mCreatePay.currency">
+                <mat-option *ngFor="let curr of curr" [(value)]="curr.value">
+                  {{curr.view}}
+                </mat-option>
               </mat-select>
             </mat-form-field>
+            <p>Expected Corresponding Ether Return: {{expected | number: "1.4"}}</p>
             <button mat-stroked-button>Submit</button>
           </form>
       </mat-grid-tile>
