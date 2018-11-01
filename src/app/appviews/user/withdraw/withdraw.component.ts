@@ -24,8 +24,9 @@ export class WithdrawComponent implements OnInit {
   ngOnInit() {
     this.userEmail = this.usrSrv.getCurrentUser();
     this.usrSrv.getDetails(this.userEmail).subscribe(res => {
-      const result: MUser = res.result;
-      this.mPayout.receiver = result.paypalEmail;
+      const result: MUser[] = res.result;
+      console.log(result[0].paypalEmail);
+      this.mPayout.receiver = result[0].paypalEmail;
     }, err => {
       console.log(err);
     });
@@ -38,9 +39,14 @@ export class WithdrawComponent implements OnInit {
   }
 
   payout(mPayout: any) {
+    this.isLoadShown = true;
+    this.form = false;
+    mPayout.from = this.userEmail;
     mPayout.receiver = this.mPayout.receiver;
     this.usrSrv.payout(mPayout).subscribe(res => {
       console.log(res);
+      this.isLoadShown = false;
+      this.form = true;
       this.usrSrv.getEtherBal(this.userEmail).subscribe(res1 => {
         const result: MEthBal = res1.result;
         this.balance = result.ether;
@@ -48,6 +54,8 @@ export class WithdrawComponent implements OnInit {
         console.log(err);
       });
     }, err => {
+      this.isLoadShown = false;
+      this.form = true;
       console.log(err);
     });
   }

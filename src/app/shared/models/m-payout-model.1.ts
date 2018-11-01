@@ -1,5 +1,6 @@
 export class MPayout {
-  value: string;
+  value: number;
+  from: string;
   receiver: string;
 
   constructor(init?: Partial<MPayout>) {
