@@ -8,6 +8,7 @@ import { MExchange } from '../models/m-exchange-model';
 import { MTransfer } from '../models/m-transfer-model';
 import { MCreatePay } from '../models/m-createPay-model';
 import { MExecutePay } from '../models/m-executePay-model';
+import { MPayout } from '../models/m-payout-model.1';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,12 @@ export class UserService {
   public transfer(form: MTransfer): Observable<MResponseDefault> {
     const headers = new HttpHeaders().set('content-type', 'application/json');
     const httpTransfer = this.http.post<MResponseDefault>('/api/walletToWallet', form, {headers: headers});
+    return httpTransfer;
+  }
+
+  public payout(form: MPayout): Observable<MResponseDefault> {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const httpTransfer = this.http.post<MResponseDefault>('/api/createPayout', form, {headers: headers});
     return httpTransfer;
   }
 }

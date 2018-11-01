@@ -6,6 +6,7 @@ export class MUser {
   password: string;
   PrivateAddress: string;
   PublicAddress: string;
+  paypalEmail: string;
 
   constructor(init?: Partial<MUser>) {
     Object.assign(this, init);

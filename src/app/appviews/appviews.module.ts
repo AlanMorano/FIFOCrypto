@@ -15,6 +15,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { LayoutModule } from '@angular/cdk/layout';
 import { CheckoutComponent, CheckoutMatDialogComponent } from './user/checkout/checkout.component';
 import { TransferComponent, TransferMatDialogComponent } from './user/transfer/transfer.component';
+import { WithdrawComponent } from './user/withdraw/withdraw.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,14 @@ import { TransferComponent, TransferMatDialogComponent } from './user/transfer/t
     LogoutComponent, ApiComponent,
     CreateAccountComponent,
     CheckoutComponent,
-    TransferComponent],
-  entryComponents: [LoginComponent, LoginMatDialogComponent, CheckoutMatDialogComponent, TransferMatDialogComponent]
+    TransferComponent,
+    WithdrawComponent
+  ],
+  entryComponents: [
+    LoginComponent,
+    LoginMatDialogComponent,
+    CheckoutMatDialogComponent,
+    TransferMatDialogComponent,
+  ]
 })
 export class AppviewsModule { }
