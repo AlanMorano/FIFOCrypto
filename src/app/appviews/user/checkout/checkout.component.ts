@@ -24,12 +24,9 @@ export class CheckoutComponent implements OnInit {
   balance: string;
   userEmail: string;
   usd: number;
-  eur: number;
   mExecutePay = new MExecutePay();
   mExchange = new MExchange();
   isLoadShown = true;
-  form2 = false;
-  form3 = false;
   constructor(
     private usrSrv: UserService,
     private route: ActivatedRoute,
@@ -57,7 +54,6 @@ export class CheckoutComponent implements OnInit {
     });
     this.usrSrv.getEtherToUsd().subscribe(res => {
       const result: MEthUSD = res.result;
-      this.eur = result.EUR;
       this.usd = result.USD;
     }, err => {
       console.log(err);
@@ -74,7 +70,6 @@ export class CheckoutComponent implements OnInit {
       this.exchange(this.mExchange);
     }, err => {
       this.isLoadShown = false;
-      this.form2 = true;
       console.log(err);
     });
   }
@@ -105,21 +100,6 @@ export class CheckoutComponent implements OnInit {
       });
     }, err => {
       console.log(err);
-    });
-  }
-
-  test() {
-    const dialogRef = this.dialog.open(CheckoutMatDialogComponent, {
-      width: 'auto',
-      data: {
-        title: 'Test Dialog',
-        message: 'Will refresh balance counter, User to User Eth Transfer Form will now be shown'
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.message = result;
-      this.router.navigate(['/user/transfer']);
     });
   }
 

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {MCreate} from '../../shared/models/m-create-model';
 import {CreateService} from './create-account.service';
-import {environment} from '../../../environments/environment';
+import {WebStorageService} from '../../shared/services/web-storage.service';
+import {TblUsers} from '../../tempDB/tbl-users';
 
 @Component({
   selector: 'app-create-account',
@@ -15,6 +16,7 @@ export class CreateAccountComponent implements OnInit {
   mCreate = new MCreate;
   constructor(
     private createSrv: CreateService,
+    private webStoreSvc: WebStorageService,
     private router: Router
     ) {
     }
@@ -25,6 +27,7 @@ export class CreateAccountComponent implements OnInit {
   onSubmit(create: MCreate) {
     this.createSrv.createAccount(create).subscribe(res => {
       if (res.status === 'success') {
+        this.webStoreSvc.setJson(TblUsers.USER_KEY, create.email);
         this.router.navigate(['/user/dashboard']);
       }
     }, err => {

@@ -2,21 +2,17 @@
   <mat-card-title>Functions</mat-card-title>
   <div class="sub-title">
     Ether Balance: {{balance | number: "1.4"}} Ether<br>
-    1 Eth to USD: {{usd}}<br>
-    1 Eth to EUR: {{eur}}
+    1 Eth to USD: {{usd}}
   </div>
   <mat-card-content>
     <mat-grid-list cols="1" rowHeight="300px">
       <mat-grid-tile *ngIf="isLoadShown" class="func-wrapper">
+        <label>{{current}}</label><br>
         <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner>
       </mat-grid-tile>
       <mat-grid-tile *ngIf="form1" class="func-wrapper">
         <form class="func-form" (ngSubmit)="createPay(mCreatePay)" #f="ngForm" novalidate>
-            <label>Step 1: Create Payment Form</label>
-            <mat-form-field appearance="outline" class="form-item">
-              <mat-label>Amount</mat-label>
-              <input name="amount" matInput placeholder="Placeholder" (keyup) = "onkeyup()" type="number" required [(ngModel)]="mCreatePay.amount">
-            </mat-form-field>
+            <label>Trade Form</label>
             <mat-form-field appearance="outline" class="form-item">
               <mat-label>Currency</mat-label>
               <mat-select name="currency" placeholder="Currency" (selectionChange) = "onkeyup()" [(ngModel)]="mCreatePay.currency">
@@ -25,7 +21,11 @@
                 </mat-option>
               </mat-select>
             </mat-form-field>
-            <p>Expected Corresponding Ether Return: {{expected | number: "1.4"}}</p>
+            <mat-form-field appearance="outline" class="form-item">
+              <mat-label>Amount</mat-label>
+              <input name="amount" matInput placeholder="Placeholder" (keyup) = "onkeyup()" type="number" required [(ngModel)]="mCreatePay.amount">
+            </mat-form-field>
+            <p>Expected Corresponding {{valueCurr}} Return: {{expected | number: "1.4"}}</p>
             <button mat-stroked-button>Submit</button>
           </form>
       </mat-grid-tile>

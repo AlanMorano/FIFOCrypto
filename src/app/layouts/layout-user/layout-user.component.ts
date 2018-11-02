@@ -48,8 +48,4 @@ export class LayoutUserComponent implements OnInit {
   routeCout() {
     this.router.navigate(['/user/transfer']);
   }
-
-  routeDraw() {
-    this.router.navigate(['/user/withdraw']);
-  }
 }
