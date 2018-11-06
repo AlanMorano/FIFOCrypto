@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
 import {UserService} from '../../../shared/services/user.service';
 import {MEthBal} from '../../../shared/models/m-response-ethbal-model';
 import {MEthUSD} from '../../../shared/models/m-response-ethusd-model';
@@ -34,6 +35,7 @@ export class UserDashboardComponent implements OnInit {
   form1 = true;
   form2 = false;
   form3 = true;
+  disableSelect = new FormControl(false);
   wallets: MWalletsModel[];
   wall: Wall[];
   curr: Curr[] = [
@@ -188,9 +190,19 @@ export class UserDashboardComponent implements OnInit {
     if (this.mCreatePay.currency === 'PAYP' || this.mCreatePay.currency === 'FIAT') {
       this.valueCurr = 'ETH';
       this.expected = event / this.usd;
+      if (this.mCreatePay.currency === 'PAYP') {
+        this.disableSelect = new FormControl(true);
+      } else {
+        this.disableSelect = new FormControl(false);
+      }
     } else {
       this.valueCurr = 'USD';
       this.expected = event / (1 / this.usd);
+      if (this.mCreatePay.currency === 'ETHP') {
+        this.disableSelect = new FormControl(true);
+      } else {
+        this.disableSelect = new FormControl(false);
+      }
     }
   }
 

@@ -19,16 +19,16 @@
         <form class="func-form" (ngSubmit)="createPay(mCreatePay)" #f="ngForm" novalidate>
           <label>Trade Form</label>
           <mat-form-field appearance="outline" class="form-item">
-            <mat-label>Currency</mat-label>
-            <mat-select name="currency" placeholder="Currency" (selectionChange) = "onKeyup()" [(ngModel)]="mCreatePay.currency">
+            <mat-label>Trade Method</mat-label>
+            <mat-select name="currency" placeholder="Trade Method" (selectionChange) = "onKeyup()" [(ngModel)]="mCreatePay.currency">
               <mat-option *ngFor="let curr of curr" [(value)]="curr.value">
                 {{curr.view}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="outline" class="form-item">
+          <mat-form-field  appearance="outline" class="form-item">
             <mat-label>Wallet</mat-label>
-            <mat-select name="wallet" placeholder="Wallets" (selectionChange) = "onChange()" [(ngModel)]="expwalletName">
+            <mat-select name="wallet" placeholder="Wallets" (selectionChange) = "onChange()" [(ngModel)]="expwalletName" [disabled]="disableSelect.value">
               <mat-option *ngFor="let item of wall" [(value)]="item.view">
                 {{item.view}}
               </mat-option>
