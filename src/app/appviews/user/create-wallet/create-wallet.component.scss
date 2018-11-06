@@ -1,0 +1,30 @@
+.global-wrapper{
+  min-width: 280px;
+  max-width: 1920px;
+  width: 88%;
+  display: block;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.sub-title{
+  font-size: 20px;
+  text-align: center;
+}
+.func-form{
+  width: 80%;
+  padding-top: 20px;
+}
+
+.form-item{
+  min-width: 200px;
+  max-width: 500px;
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.btn-link{
+  float: right;
+  margin-top: -35px;
+}

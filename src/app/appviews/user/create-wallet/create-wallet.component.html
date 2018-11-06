@@ -1,0 +1,28 @@
+<mat-card class="global-wrapper">
+  <mat-card-title>Create Wallet</mat-card-title>
+  <mat-card-content>
+    <mat-grid-list cols="1" rowHeight="300px">
+      <mat-grid-tile *ngIf="isLoadShown" class="func-wrapper">
+        <mat-spinner style="margin:0 auto;" mode="indeterminate"></mat-spinner>
+      </mat-grid-tile>      
+      <mat-grid-tile *ngIf="form1" class="func-wrapper">
+        <form class="func-form" (ngSubmit)="createWallet()" #f="ngForm" novalidate>
+          <label>Create Wallet Form</label><br>
+          <mat-form-field appearance="outline" class="form-item">
+            <mat-label>Wallet Type</mat-label>
+            <mat-select name="walletType" placeholder="Wallet Type" [(ngModel)]="mCreateWallet.walletType">
+              <mat-option *ngFor="let item of types" [(value)]="item.value">
+                {{item.value}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="form-item">
+            <mat-label>Wallet Name</mat-label>
+            <input matInput type="text" name="walletName" id="walletName" [(ngModel)]="mCreateWallet.walletName">
+          </mat-form-field>
+          <button mat-stroked-button>Submit</button>
+        </form>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

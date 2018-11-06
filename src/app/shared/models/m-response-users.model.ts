@@ -1,8 +1,12 @@
 import {MUser} from './m-user.model';
+import { MWalletsModel } from './m-wallets.model';
 
 export class MResponseUsers {
   message: string;
-  users: Array<MUser>;
+  result: {
+    User: Array<MUser>,
+    Wallet: Array<MWalletsModel>
+  };
   status: string;
 
   constructor(init?: Partial<MResponseUsers>) {

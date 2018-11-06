@@ -1,8 +1,12 @@
 export class MWalletsModel {
-  name: string;
-  symbol: string;
-  walletStatus: string;
-  balance: number;
+    id: number;
+    walletName: string;
+    walletType: string;
+    publicAddress: string;
+    privateAddress: string;
+    balance: string;
+    symbol: string;
+    email: string;
 
   constructor(init?: Partial<MWalletsModel>) {
     Object.assign(this, init);

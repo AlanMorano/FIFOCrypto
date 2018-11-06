@@ -1,15 +1,21 @@
-import { Component, OnInit, isDevMode } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../../shared/services/user.service';
 import {MEthBal} from '../../../shared/models/m-response-ethbal-model';
 import {MEthUSD} from '../../../shared/models/m-response-ethusd-model';
-import { MPayout } from 'src/app/shared/models/m-payout-model.1';
+import { MPayout } from 'src/app/shared/models/m-payout-model';
 import { MUser } from 'src/app/shared/models/m-user.model';
 import { MCreatePay } from 'src/app/shared/models/m-createPay-model';
 import { MResponseCreatePay } from 'src/app/shared/models/m-response-createPay-model';
-import { Router } from '@angular/router';
 import { environment } from '../../../../environments/environment';
+import { MWalletsModel } from 'src/app/shared/models/m-wallets.model';
+import { MCreateWalletPay } from 'src/app/shared/models/m-createWalletPay-model';
+import { MCreateWalletSell } from 'src/app/shared/models/m-createWalletSell-model';
 
 export interface Curr {
+  value: string;
+  view: string;
+}
+export interface Wall {
   value: string;
   view: string;
 }
@@ -19,35 +25,55 @@ export interface Curr {
   styleUrls: ['./user-dashboard.component.scss']
 })
 export class UserDashboardComponent implements OnInit {
-  expected: number;
+  expected = 0;
   balance: string;
   userEmail: string;
   current: string;
-  curr: Curr[] = [
-    {value: 'USD', view: 'USD to ETH'},
-    {value: 'ETH', view: 'ETH to USD'}
-  ];
   valueCurr = 'ETH';
-  usd: number;
-  mPayout = new MPayout();
-  mCreatePay = new MCreatePay({
-    currency: 'USD'
-  });
   isLoadShown = false;
   form1 = true;
   form2 = false;
   form3 = true;
+  wallets: MWalletsModel[];
+  wall: Wall[];
+  curr: Curr[] = [
+    {value: 'PAYP', view: 'Buy ETH using PayPal'},
+    {value: 'FIAT', view: 'Buy ETH using Wallet'},
+    {value: 'ETHP', view: 'ETH to Paypal'},
+    {value: 'ETHF', view: 'ETH to Wallet'}
+  ];
+  usd: number;
+  mPayout = new MPayout();
+  mCreatePay = new MCreatePay({
+    currency: 'USDP'
+  });
+  expwalletType: string;
+  expwalletName: string;
+  expbalance = '0';
+  expsymbol = 'USD';
   constructor(
-    private usrSrv: UserService,
-    private router: Router
+    private usrSrv: UserService
   ) { }
 
   ngOnInit() {
     this.userEmail = this.usrSrv.getCurrentUser();
+    this.initComp();
+  }
+
+  initComp() {
     this.usrSrv.getDetails(this.userEmail).subscribe(res => {
-      const result: MUser[] = res.result;
-      console.log(result[0].paypalEmail);
-      this.mPayout.receiver = result[0].paypalEmail;
+      const result = res.result;
+      const user: MUser = result.User[0];
+      this.wall = [];
+      this.wallets = result.Wallet;
+      this.expwalletType = this.wallets[0].walletType;
+      this.expwalletName = this.wallets[0].walletName;
+      this.expbalance = this.wallets[0].balance;
+      this.expsymbol = this.wallets[0].symbol;
+      this.wallets.forEach(item => {
+        this.wall.push({ value: item.walletType, view: item.walletName});
+      });
+      this.mPayout.receiver = user.paypalEmail;
     }, err => {
       console.log(err);
     });
@@ -68,7 +94,8 @@ export class UserDashboardComponent implements OnInit {
   createPay(mCreatePay: MCreatePay) {
     this.form1 = false;
     this.isLoadShown = true;
-    if (this.mCreatePay.currency === 'USD') {
+    if (this.mCreatePay.currency === 'PAYP') {
+      mCreatePay.currency = 'USD';
       this.current = 'Processing Payment to Ether';
       if (!environment.production) {
         mCreatePay.successUrl = 'http://localhost:4200/#/user/checkout';
@@ -90,6 +117,42 @@ export class UserDashboardComponent implements OnInit {
         this.form1 = true;
         console.log(err);
       });
+    } else if (this.mCreatePay.currency === 'FIAT') {
+      this.current = 'Processing Payment to Ether';
+      const form = new MCreateWalletPay({
+        amount: mCreatePay.amount,
+        walletType: this.expwalletType,
+        email: this.userEmail,
+        symbol: this.expsymbol
+      });
+      console.log(form);
+      this.usrSrv.createWalletPay(form).subscribe(res => {
+        this.initComp();
+        this.isLoadShown = false;
+        this.form1 = true;
+        alert('Success');
+        console.log(res);
+      }, err => {
+        console.log(err);
+      });
+    } else if (this.mCreatePay.currency === 'ETHF') {
+      this.current = 'Processing Payment to Ether';
+      const form = new MCreateWalletSell({
+        amount: mCreatePay.amount,
+        walletType: this.expwalletType,
+        email: this.userEmail,
+        symbol: this.expsymbol
+      });
+      console.log(form);
+      this.usrSrv.createWalletSell(form).subscribe(res => {
+        this.initComp();
+        this.isLoadShown = false;
+        this.form1 = true;
+        alert('Success');
+        console.log(res);
+      }, err => {
+        console.log(err);
+      });
     } else {
       this.current = 'Processing Ether to be converted to USD';
       this.mPayout.from = this.userEmail;
@@ -99,12 +162,7 @@ export class UserDashboardComponent implements OnInit {
         console.log(res);
         this.isLoadShown = false;
         this.form1 = true;
-        this.usrSrv.getEtherBal(this.userEmail).subscribe(res1 => {
-          const result: MEthBal = res1.result;
-          this.balance = result.ether;
-        }, err => {
-          console.log(err);
-        });
+        this.initComp();
       }, err => {
         this.isLoadShown = false;
         this.form1 = true;
@@ -113,9 +171,21 @@ export class UserDashboardComponent implements OnInit {
     }
   }
 
-  onkeyup() {
+  onChange() {
+    for (let c = 0; c < this.wallets.length; c++) {
+      if (this.wallets[c].walletName === this.expwalletName) {
+        this.expwalletType = this.wallets[c].walletType;
+        this.expbalance = this.wallets[c].balance;
+        this.expsymbol = this.wallets[c].symbol;
+        console.log(this.wallets);
+        console.log('Name: ' + this.expwalletName + ' Balance: ' + this.expbalance + ' Symbol: ' + this.expsymbol);
+      }
+    }
+  }
+
+  onKeyup() {
     const event = parseFloat(this.mCreatePay.amount);
-    if (this.mCreatePay.currency === 'USD') {
+    if (this.mCreatePay.currency === 'PAYP' || this.mCreatePay.currency === 'FIAT') {
       this.valueCurr = 'ETH';
       this.expected = event / this.usd;
     } else {

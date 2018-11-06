@@ -18,8 +18,7 @@ export class LayoutUserComponent implements OnInit {
       map(result => result.matches)
     );
 
-
-  fname: string;
+  fname = 'John';
   pubAdd: string;
   priAdd: string;
   constructor(
@@ -31,7 +30,7 @@ export class LayoutUserComponent implements OnInit {
   ngOnInit() {
     const userEmail = this.usrSrv.getCurrentUser();
     this.usrSrv.getDetails(userEmail).subscribe(res => {
-      const user: MUser = res.result[0];
+      const user: MUser = res.result.User[0];
       this.fname = user.FirstName;
       this.pubAdd = user.PublicAddress;
       this.priAdd = user.PrivateAddress;
@@ -40,6 +39,9 @@ export class LayoutUserComponent implements OnInit {
     });
   }
 
+  createWallet() {
+    this.router.navigate(['/user/wallet']);
+  }
 
   routeDash() {
     this.router.navigate(['/user/dashboard']);

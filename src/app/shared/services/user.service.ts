@@ -8,7 +8,11 @@ import { MExchange } from '../models/m-exchange-model';
 import { MTransfer } from '../models/m-transfer-model';
 import { MCreatePay } from '../models/m-createPay-model';
 import { MExecutePay } from '../models/m-executePay-model';
-import { MPayout } from '../models/m-payout-model.1';
+import { MPayout } from '../models/m-payout-model';
+import { MResponseUsers } from '../models/m-response-users.model';
+import { MCreateWallet } from '../models/m-createWallet-model';
+import { MCreateWalletPay } from '../models/m-createWalletPay-model';
+import { MCreateWalletSell } from '../models/m-createWalletSell-model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +29,8 @@ export class UserService {
     return this.webStore.getJson(TblUsers.USER_KEY);
   }
 
-  public getDetails(emailAddress): Observable<MResponseDefault> {
-    const httpDetails = this.http.get<MResponseDefault>('/api/getUserDetailsByEmail?email=' + emailAddress);
+  public getDetails(emailAddress): Observable<MResponseUsers> {
+    const httpDetails = this.http.get<MResponseUsers>('/api/getUserDetailsByEmail?email=' + emailAddress);
     return httpDetails;
   }
 
@@ -37,6 +41,24 @@ export class UserService {
   public getEtherToUsd(): Observable<MResponseDefault> {
     const httpEthUSD = this.http.get<MResponseDefault>('/api/checkUSDTOETHER');
     return httpEthUSD;
+  }
+
+  public createWallet(form: MCreateWallet): Observable<MResponseDefault> {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const httpCreateWallet = this.http.post<MResponseDefault>('/api/createWallet', form, {headers: headers});
+    return httpCreateWallet;
+  }
+
+  public createWalletPay(form: MCreateWalletPay): Observable<MResponseDefault> {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const httpCreateWalletPay = this.http.post<MResponseDefault>('/api/buyViaOtherWallet', form, {headers: headers});
+    return httpCreateWalletPay;
+  }
+
+  public createWalletSell(form: MCreateWalletSell): Observable<MResponseDefault> {
+    const headers = new HttpHeaders().set('content-type', 'application/json');
+    const httpCreateWalletSell = this.http.post<MResponseDefault>('/api/sellViaOtherWallet', form, {headers: headers});
+    return httpCreateWalletSell;
   }
 
   public createPay(form: MCreatePay): Observable<MResponseDefault> {

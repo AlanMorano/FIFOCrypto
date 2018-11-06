@@ -15,6 +15,7 @@ import {ApiComponent} from './appviews/api/api.component';
 import { CheckoutComponent } from './appviews/user/checkout/checkout.component';
 import { UserDashboardComponent } from './appviews/user/user-dashboard/user-dashboard.component';
 import { TransferComponent } from './appviews/user/transfer/transfer.component';
+import { CreateWalletComponent } from './appviews/user/create-wallet/create-wallet.component';
 
 export const ROUTES: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -24,7 +25,8 @@ export const ROUTES: Routes = [
     children: [
       {path: 'dashboard', component: UserDashboardComponent},
       {path: 'transfer', component: TransferComponent},
-      {path: 'checkout', component: CheckoutComponent}
+      {path: 'checkout', component: CheckoutComponent},
+      {path: 'wallet', component: CreateWalletComponent}
     ],
     canActivate: [AuthGuardService]
   },
