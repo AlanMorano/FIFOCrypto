@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent, LoginMatDialogComponent } from './login/login.component';
 import { UserDashboardComponent } from './user/user-dashboard/user-dashboard.component';
-import { LogoutComponent } from './logout/logout.component';
-import { ApiComponent } from './api/api.component';
 import {MaterialModule} from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {UserService} from '../shared/services/user.service';
@@ -39,7 +37,6 @@ import { CreateWalletComponent } from './user/create-wallet/create-wallet.compon
     CheckoutMatDialogComponent,
     TransferMatDialogComponent,
     UserDashboardComponent,
-    LogoutComponent, ApiComponent,
     CreateAccountComponent,
     CheckoutComponent,
     TransferComponent,

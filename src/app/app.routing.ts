@@ -10,8 +10,6 @@ import {LoginComponent} from './appviews/login/login.component';
 import {LayoutUserComponent} from './layouts/layout-user/layout-user.component';
 import {LayoutBlankComponent} from './layouts/layout-blank/layout-blank.component';
 import {CreateAccountComponent} from './appviews/create-account/create-account.component';
-import {LogoutComponent} from './appviews/logout/logout.component';
-import {ApiComponent} from './appviews/api/api.component';
 import { CheckoutComponent } from './appviews/user/checkout/checkout.component';
 import { UserDashboardComponent } from './appviews/user/user-dashboard/user-dashboard.component';
 import { TransferComponent } from './appviews/user/transfer/transfer.component';
@@ -19,7 +17,6 @@ import { CreateWalletComponent } from './appviews/user/create-wallet/create-wall
 
 export const ROUTES: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'api', component: ApiComponent},
   {
     path: 'user', component: LayoutUserComponent,
     children: [
@@ -34,9 +31,7 @@ export const ROUTES: Routes = [
     path: '', component: LayoutBlankComponent,
     children: [
       {path: 'login', component: LoginComponent},
-      {path: 'logout', component: LogoutComponent},
-      {path: 'create-account', component: CreateAccountComponent},
-      {path: 'api', component: ApiComponent}
+      {path: 'create-account', component: CreateAccountComponent}
     ]
   },
   // Handle all other routes

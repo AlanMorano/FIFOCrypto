@@ -7,7 +7,6 @@ import {SharedModule} from './shared/shared.module';
 import {MaterialModule} from './material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

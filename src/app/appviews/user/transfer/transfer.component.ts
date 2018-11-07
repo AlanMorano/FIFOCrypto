@@ -52,6 +52,7 @@ export class TransferComponent implements OnInit {
     mTransfer.from = this.userEmail;
     this.isLoadShown = true;
     this.form1 = false;
+    console.log(mTransfer);
     this.usrSrv.transfer(mTransfer).subscribe(res => {
       console.log(res);
       this.usrSrv.getEtherBal(this.userEmail).subscribe(res1 => {

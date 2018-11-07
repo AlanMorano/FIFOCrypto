@@ -10,7 +10,7 @@
           <label>Create Wallet Form</label><br>
           <mat-form-field appearance="outline" class="form-item">
             <mat-label>Wallet Type</mat-label>
-            <mat-select name="walletType" placeholder="Wallet Type" [(ngModel)]="mCreateWallet.walletType">
+            <mat-select name="walletType" placeholder="Wallet Type" required [(ngModel)]="mCreateWallet.walletType">
               <mat-option *ngFor="let item of types" [(value)]="item.value">
                 {{item.value}}
               </mat-option>
@@ -18,7 +18,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline" class="form-item">
             <mat-label>Wallet Name</mat-label>
-            <input matInput type="text" name="walletName" id="walletName" [(ngModel)]="mCreateWallet.walletName">
+            <input matInput type="text" name="walletName" id="walletName" required [(ngModel)]="mCreateWallet.walletName">
           </mat-form-field>
           <button mat-stroked-button>Submit</button>
         </form>
